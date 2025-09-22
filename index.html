@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mary Nat Couture - Cameroun</title>
+    <style>
+        :root {
+            --primary-color: #8a4fff;
+            --secondary-color: #f3f0ff;
+            --accent-color: #ff6b6b;
+            --text-color: #333;
+            --light-gray: #f5f5f5;
+            --border-color: #ddd;
+            --success-color: #28a745;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .tabs {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-weight: 500;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        
+        .tab-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .tab-btn:hover:not(.active) {
+            background-color: var(--secondary-color);
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 2rem 0;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .stat-card {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin: 0.5rem 0;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .section-title {
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        th {
+            background-color: var(--secondary-color);
+            font-weight: 600;
+        }
+        
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+        
+        .btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #783de9;
+        }
+        
+        .btn-danger {
+            background-color: var(--accent-color);
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background-color: #ff5252;
+        }
+        
+        .btn-success {
+            background-color: var(--success-color);
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background-color: #218838;
+        }
+        
+        .btn-sm {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.85rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .badge {
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        
+        .badge-success {
+            background-color: #e6f7ee;
+            color: #0bb56d;
+        }
+        
+        .badge-warning {
+            background-color: #fef5e6;
+            color: #f59e0b;
+        }
+        
+        .badge-danger {
+            background-color: #fee6e6;
+            color: #ef4444;
+        }
+        
+        .creation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .creation-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .creation-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .creation-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            cursor: pointer;
+        }
+        
+        .creation-details {
+            padding: 1rem;
+        }
+        
+        .creation-price {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-top: 0.5rem;
+        }
+        
+        .image-preview {
+            max-width: 100%;
+            max-height: 200px;
+            margin-top: 0.5rem;
+            display: none;
+        }
+        
+        .currency-badge {
+            background-color: #0170b9;
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            margin-left: 0.5rem;
+        }
+        
+        /* Modal pour l'affichage de l'image en grand */
+        .image-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1100;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .image-modal-content {
+            max-width: 90%;
+            max-height: 90%;
+        }
+        
+        .image-modal-content img {
+            width: 100%;
+            height: auto;
+            max-height: 80vh;
+            object-fit: contain;
+        }
+        
+        .close-image-modal {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .tabs {
+                width: 100%;
+                overflow-x: auto;
+                padding-bottom: 0.5rem;
+            }
+            
+            .creation-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .close-image-modal {
+                top: 10px;
+                right: 15px;
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">Mary Nat Couture - Cameroun</div>
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="dashboard">Tableau de bord</button>
+                <button class="tab-btn" data-tab="creations">Créations</button>
+                <button class="tab-btn" data-tab="clients">Clients</button>
+                <button class="tab-btn" data-tab="orders">Commandes</button>
+            </div>
+        </div>
+    </header>
+    
+    <main class="container">
+        <!-- Tableau de bord -->
+        <div id="dashboard" class="tab-content active">
+            <h2 class="section-title">Tableau de bord</h2>
+            
+            <div class="dashboard-grid">
+                <div class="card stat-card">
+                    <div class="stat-label">Commandes en cours</div>
+                    <div class="stat-number" id="orders-count">0</div>
+                </div>
+                
+                <div class="card stat-card">
+                    <div class="stat-label">Revenu ce mois <span class="currency-badge">FCFA</span></div>
+                    <div class="stat-number" id="month-revenue">0</div>
+                </div>
+                
+                <div class="card stat-card">
+                    <div class="stat-label">Montants dus <span class="currency-badge">FCFA</span></div>
+                    <div class="stat-number" id="amounts-due">0</div>
+                </div>
+                
+                <div class="card stat-card">
+                    <div class="stat-label">Total clients</div>
+                    <div class="stat-number" id="clients-count">0</div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>Commandes récentes</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Client</th>
+                            <th>Création</th>
+                            <th>Montant total <span class="currency-badge">FCFA</span></th>
+                            <th>Payé <span class="currency-badge">FCFA</span></th>
+                            <th>Reste <span class="currency-badge">FCFA</span></th>
+                            <th>Statut</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recent-orders">
+                        <!-- Les commandes récentes seront ajoutées ici dynamiquement -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Créations -->
+        <div id="creations" class="tab-content">
+            <div class="section-header">
+                <h2 class="section-title">Mes créations</h2>
+                <button class="btn btn-primary" id="add-creation-btn">Nouvelle création</button>
+            </div>
+            
+            <div class="creation-grid" id="creations-grid">
+                <!-- Les créations seront ajoutées ici dynamiquement -->
+            </div>
+        </div>
+        
+        <!-- Clients -->
+        <div id="clients" class="tab-content">
+            <div class="section-header">
+                <h2 class="section-title">Mes clients</h2>
+                <button class="btn btn-primary" id="add-client-btn">Nouveau client</button>
+                <button class="btn btn-success" id="export-clients-btn">Exporter tous les clients</button>
+            </div>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Téléphone</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="clients-list">
+                    <!-- Les clients seront ajoutés ici dynamiquement -->
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Commandes -->
+        <div id="orders" class="tab-content">
+            <div class="section-header">
+                <h2 class="section-title">Commandes</h2>
+                <button class="btn btn-primary" id="add-order-btn">Nouvelle commande</button>
+            </div>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Client</th>
+                        <th>Création</th>
+                        <th>Date</th>
+                        <th>Montant total <span class="currency-badge">FCFA</span></th>
+                        <th>Payé <span class="currency-badge">FCFA</span></th>
+                        <th>Reste <span class="currency-badge">FCFA</span></th>
+                        <th>Statut</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="orders-list">
+                    <!-- Les commandes seront ajoutées ici dynamiquement -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+    
+    <!-- Modals -->
+    <!-- Modal pour ajouter une création -->
+    <div id="creation-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Nouvelle création</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="creation-form">
+                <input type="hidden" id="creation-id">
+                <div class="form-group">
+                    <label for="creation-name">Nom</label>
+                    <input type="text" id="creation-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="creation-description">Description</label>
+                    <textarea id="creation-description" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="creation-price">Prix (FCFA)</label>
+                    <input type="number" id="creation-price" step="100" required>
+                </div>
+                <div class="form-group">
+                    <label for="creation-image">Image</label>
+                    <input type="file" id="creation-image" accept="image/*">
+                    <img id="creation-image-preview" class="image-preview" src="" alt="Aperçu de l'image">
+                </div>
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Modal pour ajouter un client -->
+    <div id="client-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Nouveau client</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="client-form">
+                <input type="hidden" id="client-id">
+                <div class="form-group">
+                    <label for="client-firstname">Prénom</label>
+                    <input type="text" id="client-firstname" required>
+                </div>
+                <div class="form-group">
+                    <label for="client-lastname">Nom</label>
+                    <input type="text" id="client-lastname" required>
+                </div>
+                <div class="form-group">
+                    <label for="client-phone">Téléphone</label>
+                    <input type="tel" id="client-phone">
+                </div>
+                <div class="form-group">
+                    <label for="client-email">Email</label>
+                    <input type="email" id="client-email">
+                </div>
+                <div class="form-group">
+                    <label for="client-address">Adresse</label>
+                    <textarea id="client-address" rows="2"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Modal pour ajouter une commande -->
+    <div id="order-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Nouvelle commande</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="order-form">
+                <input type="hidden" id="order-id">
+                <div class="form-group">
+                    <label for="order-client">Client</label>
+                    <select id="order-client" required>
+                        <option value="">Sélectionner un client</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="order-creation">Création</label>
+                    <select id="order-creation" required>
+                        <option value="">Sélectionner une création</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="order-amount">Montant total (FCFA)</label>
+                    <input type="number" id="order-amount" step="100" required>
+                </div>
+                <div class="form-group">
+                    <label for="order-paid">Montant payé (FCFA)</label>
+                    <input type="number" id="order-paid" step="100" required>
+                </div>
+                <div class="form-group">
+                    <label for="order-status">Statut</label>
+                    <select id="order-status" required>
+                        <option value="En cours">En cours</option>
+                        <option value="Terminée">Terminée</option>
+                        <option value="Livrée">Livrée</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Modal pour enregistrer un paiement -->
+    <div id="payment-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Enregistrer un paiement</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="payment-form">
+                <input type="hidden" id="payment-order-id">
+                <div class="form-group">
+                    <label>Client: <span id="payment-client"></span></label>
+                </div>
+                <div class="form-group">
+                    <label>Création: <span id="payment-creation"></span></label>
+                </div>
+                <div class="form-group">
+                    <label>Montant total: <span id="payment-total"></span> FCFA</label>
+                </div>
+                <div class="form-group">
+                    <label>Déjà payé: <span id="payment-paid"></span> FCFA</label>
+                </div>
+                <div class="form-group">
+                    <label>Reste à payer: <span id="payment-due"></span> FCFA</label>
+                </div>
+                <div class="form-group">
+                    <label for="payment-amount">Montant à ajouter (FCFA)</label>
+                    <input type="number" id="payment-amount" step="100" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Enregistrer le paiement</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal pour afficher l'image en grand -->
+    <div id="image-modal" class="image-modal">
+        <span class="close-image-modal">&times;</span>
+        <div class="image-modal-content">
+            <img id="full-size-image" src="" alt="Image en taille réelle">
+        </div>
+    </div>
+
+    <script>
+        // Structure de données
+        let data = {
+            creations: [],
+            clients: [],
+            orders: []
+        };
+        
+        // Charger les données depuis le localStorage
+        function loadData() {
+            const savedData = localStorage.getItem('couturiereData');
+            if (savedData) {
+                data = JSON.parse(savedData);
+                
+                // Convertir les images base64 en objets Image pour les créations
+                data.creations.forEach(creation => {
+                    if (creation.image) {
+                        creation.imageUrl = creation.image;
+                    }
+                });
+            }
+        }
+        
+        // Sauvegarder les données dans le localStorage
+        function saveData() {
+            localStorage.setItem('couturiereData', JSON.stringify(data));
+            
+            // Exporter également les clients individuellement
+            exportClientsToJson();
+        }
+        
+        // Exporter chaque client dans un fichier JSON séparé
+        function exportClientsToJson() {
+            data.clients.forEach(client => {
+                const clientData = JSON.stringify(client, null, 2);
+                const blob = new Blob([clientData], { type: 'application/json' });
+                // Note: dans un environnement réel, vous enverriez ces données à un serveur
+                // Pour cette démo, nous stockons les URLs dans le client pour simulation
+                client.jsonUrl = URL.createObjectURL(blob);
+            });
+        }
+        
+        // Télécharger tous les clients en tant qu'archive ZIP
+        function downloadAllClients() {
+            // Créer un objet JSZip
+            const zip = new JSZip();
+            const clientsFolder = zip.folder("clients");
+            
+            // Ajouter chaque client comme fichier JSON
+            data.clients.forEach(client => {
+                const clientData = JSON.stringify(client, null, 2);
+                clientsFolder.file(`client_${client.id}.json`, clientData);
+            });
+            
+            // Générer le ZIP et le télécharger
+            zip.generateAsync({ type: "blob" }).then(content => {
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(content);
+                link.download = "clients_couturiere.zip";
+                link.click();
+            });
+        }
+        
+        // Initialiser l'application
+        function initApp() {
+            loadData();
+            setupEventListeners();
+            showTab('dashboard');
+            renderDashboard();
+            renderCreations();
+            renderClients();
+            renderOrders();
+            populateSelects();
+        }
+        
+        // Configuration des écouteurs d'événements
+        function setupEventListeners() {
+            // Navigation par onglets
+            document.querySelectorAll('.tab-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    const tab = button.getAttribute('data-tab');
+                    showTab(tab);
+                });
+            });
+            
+            // Boutons d'ajout
+            document.getElementById('add-creation-btn').addEventListener('click', () => openModal('creation'));
+            document.getElementById('add-client-btn').addEventListener('click', () => openModal('client'));
+            document.getElementById('add-order-btn').addEventListener('click', () => openModal('order'));
+            document.getElementById('export-clients-btn').addEventListener('click', downloadAllClients);
+            
+            // Gestion de l'image
+            document.getElementById('creation-image').addEventListener('change', handleImageUpload);
+            
+            // Fermeture des modals
+            document.querySelectorAll('.close-modal').forEach(button => {
+                button.addEventListener('click', () => {
+                    document.querySelectorAll('.modal').forEach(modal => {
+                        modal.style.display = 'none';
+                    });
+                });
+            });
+            
+            // Fermeture du modal d'image
+            document.querySelector('.close-image-modal').addEventListener('click', () => {
+                document.getElementById('image-modal').style.display = 'none';
+            });
+            
+            // Fermer le modal d'image en cliquant à l'extérieur
+            document.getElementById('image-modal').addEventListener('click', (e) => {
+                if (e.target === document.getElementById('image-modal')) {
+                    document.getElementById('image-modal').style.display = 'none';
+                }
+            });
+            
+            // Soumission des formulaires
+            document.getElementById('creation-form').addEventListener('submit', handleCreationSubmit);
+            document.getElementById('client-form').addEventListener('submit', handleClientSubmit);
+            document.getElementById('order-form').addEventListener('submit', handleOrderSubmit);
+            document.getElementById('payment-form').addEventListener('submit', handlePaymentSubmit);
+            
+            // Fermer les modals en cliquant à l'extérieur
+            window.addEventListener('click', (event) => {
+                document.querySelectorAll('.modal').forEach(modal => {
+                    if (event.target === modal) {
+                        modal.style.display = 'none';
+                    }
+                });
+            });
+        }
+        
+        // Gérer le téléchargement d'image
+        function handleImageUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const preview = document.getElementById('creation-image-preview');
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        }
+        
+        // Afficher un onglet
+        function showTab(tabName) {
+            // Désactiver tous les onglets
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-btn').forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Activer l'onglet sélectionné
+            document.getElementById(tabName).classList.add('active');
+            document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
+            
+            // Mettre à jour le contenu spécifique à l'onglet
+            if (tabName === 'dashboard') {
+                renderDashboard();
+            } else if (tabName === 'creations') {
+                renderCreations();
+            } else if (tabName === 'clients') {
+                renderClients();
+            } else if (tabName === 'orders') {
+                renderOrders();
+            }
+        }
+        
+        // Ouvrir un modal
+        function openModal(type, id = null) {
+            const modal = document.getElementById(`${type}-modal`);
+            modal.style.display = 'flex';
+            
+            if (id) {
+                // Mode édition
+                if (type === 'creation') {
+                    const creation = data.creations.find(c => c.id === id);
+                    document.getElementById('creation-id').value = creation.id;
+                    document.getElementById('creation-name').value = creation.name;
+                    document.getElementById('creation-description').value = creation.description;
+                    document.getElementById('creation-price').value = creation.price;
+                    
+                    const preview = document.getElementById('creation-image-preview');
+                    if (creation.imageUrl) {
+                        preview.src = creation.imageUrl;
+                        preview.style.display = 'block';
+                    } else {
+                        preview.style.display = 'none';
+                    }
+                } else if (type === 'client') {
+                    const client = data.clients.find(c => c.id === id);
+                    document.getElementById('client-id').value = client.id;
+                    document.getElementById('client-firstname').value = client.firstname;
+                    document.getElementById('client-lastname').value = client.lastname;
+                    document.getElementById('client-phone').value = client.phone;
+                    document.getElementById('client-email').value = client.email;
+                    document.getElementById('client-address').value = client.address || '';
+                } else if (type === 'order') {
+                    const order = data.orders.find(o => o.id === id);
+                    document.getElementById('order-id').value = order.id;
+                    document.getElementById('order-client').value = order.clientId;
+                    document.getElementById('order-creation').value = order.creationId;
+                    document.getElementById('order-amount').value = order.amount;
+                    document.getElementById('order-paid').value = order.paid;
+                    document.getElementById('order-status').value = order.status;
+                }
+            } else {
+                // Mode création - réinitialiser le formulaire
+                if (type === 'creation') {
+                    document.getElementById('creation-form').reset();
+                    document.getElementById('creation-id').value = '';
+                    document.getElementById('creation-image-preview').style.display = 'none';
+                } else if (type === 'client') {
+                    document.getElementById('client-form').reset();
+                    document.getElementById('client-id').value = '';
+                } else if (type === 'order') {
+                    document.getElementById('order-form').reset();
+                    document.getElementById('order-id').value = '';
+                }
+            }
+        }
+        
+        // Ouvrir le modal de paiement
+        function openPaymentModal(orderId) {
+            const order = data.orders.find(o => o.id === orderId);
+            const client = data.clients.find(c => c.id === order.clientId);
+            const creation = data.creations.find(c => c.id === order.creationId);
+            
+            document.getElementById('payment-order-id').value = order.id;
+            document.getElementById('payment-client').textContent = `${client.firstname} ${client.lastname}`;
+            document.getElementById('payment-creation').textContent = creation.name;
+            document.getElementById('payment-total').textContent = formatMoney(order.amount);
+            document.getElementById('payment-paid').textContent = formatMoney(order.paid);
+            document.getElementById('payment-due').textContent = formatMoney(order.amount - order.paid);
+            
+            document.getElementById('payment-modal').style.display = 'flex';
+        }
+        
+        // Ouvrir le modal d'image en grand
+        function openImageModal(imageUrl) {
+            document.getElementById('full-size-image').src = imageUrl;
+            document.getElementById('image-modal').style.display = 'flex';
+        }
+        
+        // Formater l'argent (FCFA)
+        function formatMoney(amount) {
+            return new Intl.NumberFormat('fr-FR').format(amount);
+        }
+        
+        // Gérer la soumission du formulaire de création
+        function handleCreationSubmit(e) {
+            e.preventDefault();
+            
+            const id = document.getElementById('creation-id').value;
+            const name = document.getElementById('creation-name').value;
+            const description = document.getElementById('creation-description').value;
+            const price = parseInt(document.getElementById('creation-price').value);
+            const imageFile = document.getElementById('creation-image').files[0];
+            
+            if (id) {
+                // Modification
+                const index = data.creations.findIndex(c => c.id === id);
+                if (index !== -1) {
+                    if (imageFile) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            data.creations[index] = { 
+                                ...data.creations[index], 
+                                name, 
+                                description, 
+                                price,
+                                image: e.target.result,
+                                imageUrl: e.target.result
+                            };
+                            saveData();
+                            document.getElementById('creation-modal').style.display = 'none';
+                            renderCreations();
+                        };
+                        reader.readAsDataURL(imageFile);
+                    } else {
+                        data.creations[index] = { 
+                            ...data.creations[index], 
+                            name, 
+                            description, 
+                            price 
+                        };
+                        saveData();
+                        document.getElementById('creation-modal').style.display = 'none';
+                        renderCreations();
+                    }
+                }
+            } else {
+                // Nouvelle création
+                const newId = Date.now().toString();
+                
+                if (imageFile) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        data.creations.push({ 
+                            id: newId, 
+                            name, 
+                            description, 
+                            price,
+                            image: e.target.result,
+                            imageUrl: e.target.result
+                        });
+                        saveData();
+                        document.getElementById('creation-modal').style.display = 'none';
+                        renderCreations();
+                        populateSelects();
+                    };
+                    reader.readAsDataURL(imageFile);
+                } else {
+                    data.creations.push({ 
+                        id: newId, 
+                        name, 
+                        description, 
+                        price 
+                    });
+                    saveData();
+                    document.getElementById('creation-modal').style.display = 'none';
+                    renderCreations();
+                    populateSelects();
+                }
+            }
+        }
+        
+        // Gérer la soumission du formulaire de client
+        function handleClientSubmit(e) {
+            e.preventDefault();
+            
+            const id = document.getElementById('client-id').value;
+            const firstname = document.getElementById('client-firstname').value;
+            const lastname = document.getElementById('client-lastname').value;
+            const phone = document.getElementById('client-phone').value;
+            const email = document.getElementById('client-email').value;
+            const address = document.getElementById('client-address').value;
+            
+            if (id) {
+                // Modification
+                const index = data.clients.findIndex(c => c.id === id);
+                if (index !== -1) {
+                    data.clients[index] = { id, firstname, lastname, phone, email, address };
+                }
+            } else {
+                // Nouveau client
+                const newId = Date.now().toString();
+                data.clients.push({ id: newId, firstname, lastname, phone, email, address });
+            }
+            
+            saveData();
+            document.getElementById('client-modal').style.display = 'none';
+            renderClients();
+            populateSelects();
+        }
+        
+        // Gérer la soumission du formulaire de commande
+        function handleOrderSubmit(e) {
+            e.preventDefault();
+            
+            const id = document.getElementById('order-id').value;
+            const clientId = document.getElementById('order-client').value;
+            const creationId = document.getElementById('order-creation').value;
+            const amount = parseInt(document.getElementById('order-amount').value);
+            const paid = parseInt(document.getElementById('order-paid').value);
+            const status = document.getElementById('order-status').value;
+            const date = id ? data.orders.find(o => o.id === id).date : new Date().toISOString().split('T')[0];
+            
+            if (id) {
+                // Modification
+                const index = data.orders.findIndex(o => o.id === id);
+                if (index !== -1) {
+                    data.orders[index] = { id, clientId, creationId, amount, paid, status, date };
+                }
+            } else {
+                // Nouvelle commande
+                const newId = Date.now().toString();
+                data.orders.push({ id: newId, clientId, creationId, amount, paid, status, date });
+            }
+            
+            saveData();
+            document.getElementById('order-modal').style.display = 'none';
+            renderOrders();
+            renderDashboard();
+        }
+        
+        // Gérer la soumission du formulaire de paiement
+        function handlePaymentSubmit(e) {
+            e.preventDefault();
+            
+            const orderId = document.getElementById('payment-order-id').value;
+            const amount = parseInt(document.getElementById('payment-amount').value);
+            
+            const order = data.orders.find(o => o.id === orderId);
+            if (order) {
+                order.paid += amount;
+                if (order.paid >= order.amount) {
+                    order.status = 'Terminée';
+                }
+            }
+            
+            saveData();
+            document.getElementById('payment-modal').style.display = 'none';
+            renderOrders();
+            renderDashboard();
+        }
+        
+        // Remplir les sélecteurs dans les modals
+        function populateSelects() {
+            const clientSelect = document.getElementById('order-client');
+            const creationSelect = document.getElementById('order-creation');
+            
+            // Vider les options existantes (sauf la première)
+            while (clientSelect.options.length > 1) {
+                clientSelect.remove(1);
+            }
+            while (creationSelect.options.length > 1) {
+                creationSelect.remove(1);
+            }
+            
+            // Ajouter les clients
+            data.clients.forEach(client => {
+                const option = document.createElement('option');
+                option.value = client.id;
+                option.textContent = `${client.firstname} ${client.lastname}`;
+                clientSelect.appendChild(option);
+            });
+            
+            // Ajouter les créations
+            data.creations.forEach(creation => {
+                const option = document.createElement('option');
+                option.value = creation.id;
+                option.textContent = creation.name;
+                creationSelect.appendChild(option);
+            });
+        }
+        
+        // Afficher le tableau de bord
+        function renderDashboard() {
+            const ordersCount = data.orders.filter(o => o.status !== 'Livrée').length;
+            const clientsCount = data.clients.length;
+            
+            // Calculer le revenu du mois en cours
+            const now = new Date();
+            const currentMonth = now.getMonth();
+            const currentYear = now.getFullYear();
+            
+            const monthRevenue = data.orders
+                .filter(order => {
+                    const orderDate = new Date(order.date);
+                    return orderDate.getMonth() === currentMonth && 
+                           orderDate.getFullYear() === currentYear;
+                })
+                .reduce((sum, order) => sum + order.paid, 0);
+            
+            // Calculer les montants dus
+            const amountsDue = data.orders
+                .filter(order => order.status !== 'Livrée')
+                .reduce((sum, order) => sum + (order.amount - order.paid), 0);
+            
+            // Mettre à jour les statistiques
+            document.getElementById('orders-count').textContent = ordersCount;
+            document.getElementById('clients-count').textContent = clientsCount;
+            document.getElementById('month-revenue').textContent = formatMoney(monthRevenue);
+            document.getElementById('amounts-due').textContent = formatMoney(amountsDue);
+            
+            // Afficher les commandes récentes (5 maximum)
+            const recentOrders = [...data.orders]
+                .sort((a, b) => new Date(b.date) - new Date(a.date))
+                .slice(0, 5);
+            
+            const recentOrdersContainer = document.getElementById('recent-orders');
+            recentOrdersContainer.innerHTML = '';
+            
+            recentOrders.forEach(order => {
+                const client = data.clients.find(c => c.id === order.clientId);
+                const creation = data.creations.find(c => c.id === order.creationId);
+                
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${client ? `${client.firstname} ${client.lastname}` : 'Client inconnu'}</td>
+                    <td>${creation ? creation.name : 'Création inconnue'}</td>
+                    <td>${formatMoney(order.amount)} FCFA</td>
+                    <td>${formatMoney(order.paid)} FCFA</td>
+                    <td>${formatMoney(order.amount - order.paid)} FCFA</td>
+                    <td><span class="badge ${getStatusBadgeClass(order.status)}">${order.status}</span></td>
+                `;
+                
+                recentOrdersContainer.appendChild(row);
+            });
+        }
+        
+        // Afficher les créations
+        function renderCreations() {
+            const creationsContainer = document.getElementById('creations-grid');
+            creationsContainer.innerHTML = '';
+            
+            data.creations.forEach(creation => {
+                const card = document.createElement('div');
+                card.className = 'creation-card';
+                
+                card.innerHTML = `
+                    ${creation.imageUrl ? `<img src="${creation.imageUrl}" alt="${creation.name}" class="creation-image" onclick="openImageModal('${creation.imageUrl}')">` : ''}
+                    <div class="creation-details">
+                        <h3>${creation.name}</h3>
+                        <p>${creation.description || 'Aucune description'}</p>
+                        <div class="creation-price">${formatMoney(creation.price)} FCFA</div>
+                        <div class="actions" style="margin-top: 1rem;">
+                            <button class="btn btn-primary btn-sm" onclick="openModal('creation', '${creation.id}')">Modifier</button>
+                            <button class="btn btn-danger btn-sm" onclick="deleteCreation('${creation.id}')">Supprimer</button>
+                        </div>
+                    </div>
+                `;
+                
+                creationsContainer.appendChild(card);
+            });
+        }
+        
+        // Afficher les clients
+        function renderClients() {
+            const clientsContainer = document.getElementById('clients-list');
+            clientsContainer.innerHTML = '';
+            
+            data.clients.forEach(client => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${client.lastname}</td>
+                    <td>${client.firstname}</td>
+                    <td>${client.phone}</td>
+                    <td>${client.email}</td>
+                    <td class="actions">
+                        <button class="btn btn-primary btn-sm" onclick="openModal('client', '${client.id}')">Modifier</button>
+                        <button class="btn btn-success btn-sm" onclick="exportClient('${client.id}')">Exporter</button>
+                        <button class="btn btn-danger btn-sm" onclick="deleteClient('${client.id}')">Supprimer</button>
+                    </td>
+                `;
+                
+                clientsContainer.appendChild(row);
+            });
+        }
+        
+        // Exporter un client individuel
+        function exportClient(clientId) {
+            const client = data.clients.find(c => c.id === clientId);
+            if (!client) return;
+            
+            const clientData = JSON.stringify(client, null, 2);
+            const blob = new Blob([clientData], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `client_${client.lastname}_${client.firstname}.json`;
+            a.click();
+            
+            URL.revokeObjectURL(url);
+        }
+        
+        // Afficher les commandes
+        function renderOrders() {
+            const ordersContainer = document.getElementById('orders-list');
+            ordersContainer.innerHTML = '';
+            
+            data.orders.forEach(order => {
+                const client = data.clients.find(c => c.id === order.clientId);
+                const creation = data.creations.find(c => c.id === order.creationId);
+                const due = order.amount - order.paid;
+                
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${client ? `${client.firstname} ${client.lastname}` : 'Client inconnu'}</td>
+                    <td>${creation ? creation.name : 'Création inconnue'}</td>
+                    <td>${order.date}</td>
+                    <td>${formatMoney(order.amount)} FCFA</td>
+                    <td>${formatMoney(order.paid)} FCFA</td>
+                    <td>${formatMoney(due)} FCFA</td>
+                    <td><span class="badge ${getStatusBadgeClass(order.status)}">${order.status}</span></td>
+                    <td class="actions">
+                        <button class="btn btn-primary btn-sm" onclick="openModal('order', '${order.id}')">Modifier</button>
+                        ${due > 0 ? `<button class="btn btn-primary btn-sm" onclick="openPaymentModal('${order.id}')">Paiement</button>` : ''}
+                        <button class="btn btn-danger btn-sm" onclick="deleteOrder('${order.id}')">Supprimer</button>
+                    </td>
+                `;
+                
+                ordersContainer.appendChild(row);
+            });
+        }
+        
+        // Obtenir la classe CSS pour le badge de statut
+        function getStatusBadgeClass(status) {
+            switch (status) {
+                case 'En cours': return 'badge-warning';
+                case 'Terminée': return 'badge-success';
+                case 'Livrée': return 'badge-success';
+                default: return 'badge-warning';
+            }
+        }
+        
+        // Supprimer une création
+        function deleteCreation(id) {
+            if (confirm('Êtes-vous sûr de vouloir supprimer cette création ?')) {
+                data.creations = data.creations.filter(c => c.id !== id);
+                // Supprimer également les commandes associées
+                data.orders = data.orders.filter(o => o.creationId !== id);
+                saveData();
+                renderCreations();
+                renderOrders();
+                populateSelects();
+            }
+        }
+        
+        // Supprimer un client
+        function deleteClient(id) {
+            // Vérifier si le client a des commandes
+            const clientOrders = data.orders.filter(o => o.clientId === id);
+            if (clientOrders.length > 0) {
+                alert('Impossible de supprimer ce client car il a des commandes associées.');
+                return;
+            }
+            
+            if (confirm('Êtes-vous sûr de vouloir supprimer ce client ?')) {
+                data.clients = data.clients.filter(c => c.id !== id);
+                saveData();
+                renderClients();
+                populateSelects();
+            }
+        }
+        
+        // Supprimer une commande
+        function deleteOrder(id) {
+            if (confirm('Êtes-vous sûr de vouloir supprimer cette commande ?')) {
+                data.orders = data.orders.filter(o => o.id !== id);
+                saveData();
+                renderOrders();
+                renderDashboard();
+            }
+        }
+        
+        // Initialiser l'application au chargement
+        document.addEventListener('DOMContentLoaded', initApp);
+    </script>
+
+    <!-- Inclure la bibliothèque JSZip pour l'exportation des clients -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+</body>
+</html>
